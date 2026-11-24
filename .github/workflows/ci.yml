@@ -1,0 +1,44 @@
+# CI = Continuous Integration.
+# Runs on every push and pull request to catch mistakes early.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-python:
+    name: Test Lambda code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test tools
+        run: pip install -r backend/requirements-dev.txt
+
+      - name: Run unit tests
+        run: pytest -v backend/tests
+
+  check-terraform:
+    name: Check Terraform
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Check formatting
+        run: terraform fmt -check -recursive
+
+      - name: Download providers (no AWS login needed)
+        run: terraform init -backend=false
+
+      - name: Validate configuration
+        run: terraform validate
