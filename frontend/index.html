@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chand Akbari | Aspiring Cloud Engineer</title>
+  <meta name="description" content="Chand Akbari, Computer Science student and aspiring Cloud & DevOps Engineer. This site is hosted on AWS and built with Terraform and GitHub Actions.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">Hello, I'm</p>
+      <h1>Chand Akbari</h1>
+      <p class="role">Aspiring Cloud &amp; DevOps Engineer &middot; BSc Computer Science, University of West London</p>
+      <div class="links">
+        <a class="btn" href="mailto:chandakbariuk@gmail.com">Email me</a>
+        <a class="btn btn-outline" href="https://www.linkedin.com/in/chand-akbari" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-outline" href="https://github.com/chandakbari" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="counter" aria-live="polite">
+        <span class="dot"></span>
+        This page has been viewed <strong id="visit-count">&hellip;</strong> times
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>About me</h2>
+      <p>I'm a final-year Computer Science student based in Basildon, UK, graduating in September 2027. Before moving to the UK I founded and ran a small web development agency, where I handled everything from client requirements to hosting, domains and deployment. That hands-on work with servers and websites is what led me to cloud engineering. I'm now learning AWS, Linux and DevOps practices, and I build projects like this site to put them into practice.</p>
+    </section>
+
+    <section>
+      <h2>How this website is built</h2>
+      <p>This site is my first cloud project. Every part of it runs on AWS and is created with code:</p>
+      <div class="arch">
+        <div class="arch-step"><span>Browser</span></div>
+        <div class="arrow">&rarr;</div>
+        <div class="arch-step"><span>CloudFront</span><small>CDN + HTTPS</small></div>
+        <div class="arrow">&rarr;</div>
+        <div class="arch-step"><span>S3</span><small>website files</small></div>
+      </div>
+      <div class="arch">
+        <div class="arch-step"><span>Visitor counter</span></div>
+        <div class="arrow">&rarr;</div>
+        <div class="arch-step"><span>API Gateway</span></div>
+        <div class="arrow">&rarr;</div>
+        <div class="arch-step"><span>Lambda</span><small>Python</small></div>
+        <div class="arrow">&rarr;</div>
+        <div class="arch-step"><span>DynamoDB</span></div>
+      </div>
+      <ul class="ticks">
+        <li><strong>Terraform</strong> creates all the AWS resources (Infrastructure as Code)</li>
+        <li><strong>GitHub Actions</strong> tests the Python code and deploys every change automatically</li>
+        <li><strong>OIDC</strong> lets GitHub log in to AWS with short-lived credentials, so no stored passwords</li>
+        <li><strong>Least-privilege IAM</strong> means each service gets only the permissions it needs</li>
+      </ul>
+      <p><a href="https://github.com/chandakbari/aws-cloud-resume" target="_blank" rel="noopener">See the source code on GitHub &rarr;</a></p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="tags">
+        <span>AWS (learning)</span><span>Terraform</span><span>Linux</span><span>GitHub Actions</span>
+        <span>Python</span><span>Git</span><span>HTML &amp; CSS</span><span>Networking</span>
+        <span>Databases</span><span>Web hosting &amp; DNS</span><span>WordPress</span><span>SEO</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="item">
+        <h3>Shop Manager &amp; Phone Repair Technician <span>Shiv Mobile, Basildon, UK &middot; Part-time &middot; Apr 2025 &ndash; Present</span></h3>
+        <ul>
+          <li>Supported daily shop operations: opening and closing, cash handling, stock control and staff support</li>
+          <li>Diagnosed and repaired mobile devices, focusing on quality and customer satisfaction</li>
+          <li>Trained and assisted new team members in shop procedures and safety standards</li>
+          <li>Maintained repair records and kept the workplace organised</li>
+        </ul>
+      </div>
+      <div class="item">
+        <h3>Founder &amp; Web Developer <span>An Infoway, Rajkot, India &middot; Self-employed &middot; Feb 2022 &ndash; Jun 2024</span></h3>
+        <ul>
+          <li>Founded and ran a web development agency delivering 5+ WordPress websites for e-commerce, manufacturing, export and community clients</li>
+          <li>Managed the full project lifecycle: client requirements, design, development, deployment on Hostinger and ongoing support</li>
+          <li>Delivered and maintained kdwestzone.org, karmyogipaperstick.com, thebestagriexport.com and lollipopmakingmachine.com</li>
+          <li>Closed the agency in June 2024 to study in the UK</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="item">
+        <h3>BSc (Hons) Computer Science <span>University of West London &middot; 2024 &ndash; 2027</span></h3>
+        <p>BCS and IET accredited. Modules include data communications and networking, databases, algorithms and software engineering.</p>
+      </div>
+      <div class="item">
+        <h3>Diploma in Information Technology <span>Gujarat Technological University &middot; 2021 &ndash; 2023</span></h3>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Hosted on AWS S3 + CloudFront &middot; Deployed with Terraform and GitHub Actions</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
