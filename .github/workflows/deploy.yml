@@ -1,0 +1,36 @@
+# CD = Continuous Deployment.
+# When website files change on the main branch, upload them to S3
+# and clear the CloudFront cache so visitors see the new version.
+name: Deploy website
+
+on:
+  push:
+    branches: [main]
+    paths: ["frontend/**"]
+  workflow_dispatch: # adds a "Run workflow" button in the Actions tab
+
+# id-token: write is what lets GitHub log in to AWS with OIDC.
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Skip safely until the AWS variables have been added in GitHub settings.
+    if: ${{ vars.AWS_ROLE_ARN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to AWS (OIDC, no stored keys)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION || 'eu-north-1' }}
+
+      - name: Upload website files to S3
+        # config.js is excluded because Terraform manages the real one.
+        run: aws s3 sync frontend/ "s3://${{ vars.S3_BUCKET }}" --delete --exclude "config.js"
+
+      - name: Clear CloudFront cache
+        run: aws cloudfront create-invalidation --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" --paths "/*"
