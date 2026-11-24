@@ -1,0 +1,17 @@
+# Terraform working files and state (state can contain sensitive data, never commit it)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
+infra/build/
+
+# Python
+__pycache__/
+.pytest_cache/
+*.pyc
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db
